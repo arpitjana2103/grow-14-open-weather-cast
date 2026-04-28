@@ -1,0 +1,32 @@
+{
+    "name": "grow-14-open-weather-cast",
+    "version": "0.0.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc -b && vite build",
+        "lint": "oxlint --config .oxlintrc.json --type-aware .",
+        "lint:fix": "oxlint --config .oxlintrc.json --type-aware . --fix",
+        "fmt": "oxfmt --config .oxfmtrc.json .",
+        "fmt:check": "oxfmt --config .oxfmtrc.json . --check"
+    },
+    "dependencies": {
+        "@tailwindcss/vite": "^4.2.4",
+        "react": "^19.2.5",
+        "react-dom": "^19.2.5",
+        "tailwindcss": "^4.2.4"
+    },
+    "devDependencies": {
+        "@types/node": "^24.12.2",
+        "@types/react": "^19.2.14",
+        "@types/react-dom": "^19.2.3",
+        "@vitejs/plugin-react": "^6.0.1",
+        "oxfmt": "^0.47.0",
+        "oxlint": "^1.62.0",
+        "oxlint-tsgolint": "^0.22.1",
+        "typescript": "~6.0.2",
+        "vite": "^8.0.10",
+        "vite-plugin-oxlint": "^2.1.1"
+    }
+}
