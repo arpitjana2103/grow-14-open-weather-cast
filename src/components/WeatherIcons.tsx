@@ -1,6 +1,6 @@
 import type { TWeatherIcon } from "../schemas/weather.schema";
 
-import clsx from "clsx";
+import { clsx } from "clsx";
 
 import img01d from "../assets/01d.png";
 import img01n from "../assets/01n.png";

@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 import { getWeather } from "./api";
+import { Button } from "./components/ui/button";
 
 function App() {
     const { data } = useQuery({
@@ -10,7 +11,13 @@ function App() {
 
     console.log(data);
 
-    return <></>;
+    return (
+        <div>
+            <div className="flex min-h-svh flex-col items-center justify-center bg-destructive">
+                <Button>Click me</Button>
+            </div>
+        </div>
+    );
 }
 
 export default App;

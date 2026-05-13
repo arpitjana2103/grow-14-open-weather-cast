@@ -1,6 +1,15 @@
 {
     "tab_size": 4,
     "lsp": {
+        "vscode-css-language-server": {
+            "settings": {
+                "css": {
+                    "lint": {
+                        "unknownAtRules": "ignore"
+                    }
+                }
+            }
+        },
         "json-language-server": {
             "initialization_options": {
                 "provideFormatter": true,
@@ -32,11 +41,7 @@
     },
     "languages": {
         "CSS": {
-            "language_servers": [
-                "tailwindcss-intellisense-css",
-                "!vscode-css-language-server",
-                "..."
-            ],
+            "language_servers": ["vscode-css-language-server"],
             "format_on_save": "on",
             "prettier": {
                 "allowed": true
