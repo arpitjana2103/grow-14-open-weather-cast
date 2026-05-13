@@ -8,7 +8,9 @@ function App() {
         queryFn: () => getWeather({ lat: 33.44, lon: -94.04 }),
     });
 
-    return <>{JSON.stringify(data)}</>;
+    console.log(data);
+
+    return <></>;
 }
 
 export default App;

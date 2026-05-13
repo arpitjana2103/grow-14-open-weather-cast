@@ -1,10 +1,31 @@
 import { z } from "zod";
 
+const WeatherIconSchema = z.enum([
+    "01d",
+    "01n",
+    "02d",
+    "02n",
+    "03d",
+    "03n",
+    "04d",
+    "04n",
+    "09d",
+    "09n",
+    "10d",
+    "10n",
+    "11d",
+    "11n",
+    "13d",
+    "13n",
+    "50d",
+    "50n",
+]);
+
 const WeatherConditionSchema = z.object({
     id: z.number().int(),
     main: z.string(),
     description: z.string(),
-    icon: z.string(),
+    icon: WeatherIconSchema,
 });
 
 const CurrentWeatherSchema = z.object({
@@ -78,7 +99,7 @@ const DailyWeatherSchema = z.object({
     wind_gust: z.number().min(0).optional(),
     weather: z.array(WeatherConditionSchema).min(1),
     clouds: z.number().int().min(0).max(100),
-    pop: z.number().min(0).max(1),
+    pop: z.number().min(0).max(1), // Precipitation
     rain: z.number().min(0).optional(),
     snow: z.number().min(0).optional(),
     uvi: z.number().min(0),
@@ -94,10 +115,11 @@ export const OneCallResponseSchema = z.object({
     daily: z.array(DailyWeatherSchema),
 });
 
-export type OneCallResponse = z.infer<typeof OneCallResponseSchema>;
-export type CurrentWeather = z.infer<typeof CurrentWeatherSchema>;
-export type HourlyWeather = z.infer<typeof HourlyWeatherSchema>;
-export type DailyWeather = z.infer<typeof DailyWeatherSchema>;
-export type WeatherCondition = z.infer<typeof WeatherConditionSchema>;
-export type DailyTemp = z.infer<typeof DailyTempSchema>;
-export type DailyFeelsLike = z.infer<typeof DailyFeelsLikeSchema>;
+export type TOneCallResponse = z.infer<typeof OneCallResponseSchema>;
+export type TCurrentWeather = z.infer<typeof CurrentWeatherSchema>;
+export type THourlyWeather = z.infer<typeof HourlyWeatherSchema>;
+export type TDailyWeather = z.infer<typeof DailyWeatherSchema>;
+export type TWeatherCondition = z.infer<typeof WeatherConditionSchema>;
+export type TDailyTemp = z.infer<typeof DailyTempSchema>;
+export type TDailyFeelsLike = z.infer<typeof DailyFeelsLikeSchema>;
+export type TWeatherIcon = z.infer<typeof WeatherIconSchema>;
