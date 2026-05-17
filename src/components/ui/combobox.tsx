@@ -1,12 +1,7 @@
 "use client";
 
 import { Combobox as ComboboxPrimitive } from "@base-ui/react";
-import {
-    ArrowDown01Icon,
-    Cancel01Icon,
-    Search01Icon,
-    Tick02Icon,
-} from "@hugeicons/core-free-icons";
+import { Cancel01Icon, Search01Icon, Tick02Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import * as React from "react";
 
@@ -61,10 +56,12 @@ function ComboboxInput({
     disabled = false,
     showTrigger = true,
     showClear = false,
+    onClear,
     ...props
 }: ComboboxPrimitive.Input.Props & {
     showTrigger?: boolean;
     showClear?: boolean;
+    onClear?: () => void;
 }) {
     return (
         <InputGroup className={cn("w-auto", className)}>
@@ -82,7 +79,7 @@ function ComboboxInput({
                         <ComboboxTrigger />
                     </InputGroupButton>
                 )}
-                {showClear && <ComboboxClear disabled={disabled} />}
+                {showClear && <ComboboxClear disabled={disabled} onClick={onClear} />}
             </InputGroupAddon>
             {children}
         </InputGroup>
