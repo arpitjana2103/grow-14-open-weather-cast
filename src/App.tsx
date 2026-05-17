@@ -1,3 +1,4 @@
+import LightDarkToggle from "./components/LightDarkToggle";
 import LocationSearch from "./components/LocationSearch";
 import SavedLocations from "./components/SavedLocations";
 import { useLocationContext } from "./contexts/location.context";
@@ -14,6 +15,7 @@ function App() {
                     <div>
                         <LocationSearch handleSaveLocation={handleSaveLocation} />
                         <SavedLocations savedLocations={savedLocations} />
+                        <LightDarkToggle />
                     </div>
                     <div className="border bg-green-500 p-5">
                         Current Location : {currentLocation?.display_name}
