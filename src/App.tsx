@@ -1,22 +1,27 @@
-import { useQuery } from "@tanstack/react-query";
-
-import { getWeather } from "./api";
-import { Button } from "./components/ui/button";
+import LocationSearch from "./components/LocationSearch";
+import SavedLocations from "./components/SavedLocations";
+import { LocationProvider } from "./contexts/location.context";
+import { useLocationsCache } from "./hooks/useLocationCache";
 
 function App() {
-    const { data } = useQuery({
-        queryKey: ["weather"],
-        queryFn: () => getWeather({ lat: 33.44, lon: -94.04 }),
-    });
-
-    console.log(data);
+    const { savedLocations, handleSaveLocation } = useLocationsCache();
 
     return (
-        <div>
-            <div className="flex min-h-svh flex-col items-center justify-center bg-destructive">
-                <Button>Click me</Button>
+        <LocationProvider>
+            <div>
+                <div>
+                    <div>
+                        <div>
+                            <SavedLocations savedLocations={savedLocations} />
+                            <LocationSearch handleSaveLocation={handleSaveLocation} />
+                        </div>
+                        <div>Current Weather</div>
+                        <div>Map</div>
+                        <div>Hourly Weather</div>
+                    </div>
+                </div>
             </div>
-        </div>
+        </LocationProvider>
     );
 }
 
