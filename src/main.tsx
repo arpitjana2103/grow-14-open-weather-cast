@@ -6,14 +6,17 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
 import App from "./App.tsx";
+import { LocationProvider } from "./contexts/location.context.tsx";
 
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")!).render(
     <StrictMode>
-        <QueryClientProvider client={queryClient}>
-            <ReactQueryDevtools initialIsOpen={false} />
-            <App />
-        </QueryClientProvider>
+        <LocationProvider>
+            <QueryClientProvider client={queryClient}>
+                <ReactQueryDevtools initialIsOpen={false} />
+                <App />
+            </QueryClientProvider>
+        </LocationProvider>
     </StrictMode>,
 );
