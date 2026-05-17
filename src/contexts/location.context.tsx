@@ -1,7 +1,9 @@
 import type { TLocationData } from "@/schemas/location.schema";
 import type { Dispatch, SetStateAction } from "react";
 
-import { createContext, useContext, useMemo, useState } from "react";
+import { createContext, useContext, useMemo } from "react";
+
+import { useLocalStorageState } from "@/hooks/useLocalStorage";
 
 type ContextType = {
     currentLocation: TLocationData | null;
@@ -14,8 +16,13 @@ type LocationProviderProps = {
     children: React.ReactNode;
 };
 
+const STORAGE_KEY = "openweathercast-currLocation";
+
 export const LocationProvider = function ({ children }: LocationProviderProps) {
-    const [currentLocation, setCurrentLocation] = useState<TLocationData | null>(null);
+    const [currentLocation, setCurrentLocation] = useLocalStorageState<TLocationData | null>(
+        STORAGE_KEY,
+        null,
+    );
 
     const value = useMemo(
         () => ({

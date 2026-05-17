@@ -12,10 +12,12 @@ function App() {
             <div>
                 <div>
                     <div>
-                        <SavedLocations savedLocations={savedLocations} />
                         <LocationSearch handleSaveLocation={handleSaveLocation} />
+                        <SavedLocations savedLocations={savedLocations} />
                     </div>
-                    <div>{JSON.stringify(currentLocation)}</div>
+                    <div className="border bg-green-500 p-5">
+                        Current Location : {currentLocation?.display_name}
+                    </div>
                     <div>Current Weather</div>
                     <div>Map</div>
                     <div>Hourly Weather</div>

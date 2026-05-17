@@ -10,8 +10,6 @@ const axiosClient = axios.create({ baseURL: BASE_URL });
 export async function searchLocations(query: string) {
     if (!query.trim()) return [];
 
-    console.log(query, "Search Location");
-
     const res = await axiosClient.get("/autocomplete", {
         params: {
             key: LOCATIONIQ_API_KEY,

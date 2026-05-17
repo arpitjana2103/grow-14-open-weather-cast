@@ -12,6 +12,7 @@
         "style": "off"
     },
     "rules": {
+        "eslint/no-unsafe-type-assertion": "off",
         "eslint/no-unused-vars": "off",
         "typescript/explicit-function-return-type": "off",
         "unicorn/no-empty-file": "off",
