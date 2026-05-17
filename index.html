@@ -5,6 +5,27 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>grow-14-open-weather-cast</title>
+
+    <!-- Prevents dark mode flash on reload -->
+    <style>
+      html { background-color: oklch(1 0 0); color: oklch(0.145 0 0); }
+      html.dark { background-color: oklch(0.145 0 0); color: oklch(0.985 0 0); }
+      html.no-transition * { transition: none !important; }
+    </style>
+    <script>
+      (function () {
+        var root = document.documentElement;
+        var stored = localStorage.getItem("theme");
+        var isDark =
+          stored === "dark" ||
+          (!stored && window.matchMedia("(prefers-color-scheme: dark)").matches);
+        if (isDark) root.classList.add("dark");
+        root.classList.add("no-transition");
+        window.addEventListener("load", function () {
+          setTimeout(function () { root.classList.remove("no-transition"); }, 0);
+        });
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
