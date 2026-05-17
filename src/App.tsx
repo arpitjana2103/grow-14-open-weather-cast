@@ -1,5 +1,6 @@
 import LightDarkToggle from "./components/LightDarkToggle";
 import LocationSearch from "./components/LocationSearch";
+import Logo from "./components/Logo";
 import { useLocationContext } from "./contexts/location.context";
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
             <div>
                 <div>
                     <div>
+                        <Logo />
                         <LocationSearch />
                         <LightDarkToggle />
                     </div>
