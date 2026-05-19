@@ -49,7 +49,7 @@ export default function LocationSearch() {
 
     return (
         <div className="relative" ref={popoverRef}>
-            <InputGroup className="relative h-10 w-[20rem]">
+            <InputGroup className="relative h-[2.4rem] w-[20rem]">
                 <InputGroupInput
                     placeholder="Search for location"
                     value={query}

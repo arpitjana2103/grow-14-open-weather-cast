@@ -1,4 +1,7 @@
+import { Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
+
+import { Button } from "@/components/ui/button";
 
 export default function LightDarkToggle() {
     const [isDark, setIsDark] = useState(function () {
@@ -17,8 +20,10 @@ export default function LightDarkToggle() {
     }
     return (
         <div>
-            <input type="checkbox" id="toggle" checked={isDark} onChange={handleToggle} />
-            <label htmlFor="toggle">Mode</label>
+            <Button className="h-10 w-10 cursor-pointer border" onClick={handleToggle}>
+                {!isDark && <Sun size={19} />}
+                {isDark && <Moon size={19} />}
+            </Button>
         </div>
     );
 }

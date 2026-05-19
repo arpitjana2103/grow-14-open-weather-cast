@@ -44,16 +44,26 @@ SKY 600 :  #0084d1
 :root {
     --blue600: #155dfc;
     --sky600: #0084d1;
+
     --background: #ffffff;
     --foreground: #0a0a0a;
+
+    --primary: var(--blue600);
+    --primary-foreground: #fafafa;
+    --secondary-foreground: #171717;
+
+    --input: #e5e5e5;
+    --ring: var(--primary);
+
+    /* ----------------- */
+
     --card: #ffffff;
     --card-foreground: #0a0a0a;
     --popover: #ffffff;
     --popover-foreground: #0a0a0a;
-    --primary: #171717;
-    --primary-foreground: #fafafa;
+
     --secondary: #f5f5f5;
-    --secondary-foreground: #171717;
+
     --muted: #f5f5f5;
     --muted-foreground: #737373;
     --accent: #f5f5f5;
@@ -61,8 +71,7 @@ SKY 600 :  #0084d1
     --destructive: #e7000b;
     --destructive-foreground: #ffffff;
     --border: #e5e5e5;
-    --input: #e5e5e5;
-    --ring: var(--blue600);
+
     --chart-1: #91c5ff;
     --chart-2: #3a81f6;
     --chart-3: #2563ef;
@@ -117,16 +126,20 @@ SKY 600 :  #0084d1
 */
 
 .dark {
+    --primary: var(--blue600);
+    --primary-foreground: #fafafa;
+    --secondary-foreground: #fafafa;
+
+    /* ---------------- */
     --background: #0a0a0a;
     --foreground: #fafafa;
     --card: #171717;
     --card-foreground: #fafafa;
     --popover: #262626;
     --popover-foreground: #fafafa;
-    --primary: #e5e5e5;
-    --primary-foreground: #171717;
+
     --secondary: #262626;
-    --secondary-foreground: #fafafa;
+
     --muted: #262626;
     --muted-foreground: #a1a1a1;
     --accent: #404040;
@@ -248,7 +261,7 @@ SKY 600 :  #0084d1
         font-size: 15px;
     }
     * {
-        @apply border-border outline-ring/50;
+        @apply border-border outline-ring/50 transition-colors duration-[50ms];
         will-change: background-color, color, border-color;
     }
     body {
