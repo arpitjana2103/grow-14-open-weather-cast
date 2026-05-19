@@ -11,26 +11,28 @@ export default function NavBar() {
     return (
         <header className="w-screen">
             <Container>
-                <div className="flex items-center justify-between py-4">
+                <div className="flex flex-col items-center justify-between gap-4 py-4 mdlg:flex-row">
                     <div>
                         <NavLink to="/">
                             <Logo />
                         </NavLink>
                     </div>
 
-                    <ul className="flex items-center gap-2.5">
+                    <ul className="flex flex-col items-center gap-2.5 sm:flex-row">
                         <li>
                             <LocationSearch />
                         </li>
-                        <li>
-                            <Nav />
-                        </li>
-                        <li>
-                            <LightDarkToggle />
-                        </li>
-                        <li>
-                            <GitHubBtn />
-                        </li>
+                        <div className="flex items-center gap-4.5 sm:flex-row sm:gap-2.5">
+                            <li>
+                                <Nav />
+                            </li>
+                            <li>
+                                <LightDarkToggle />
+                            </li>
+                            <li>
+                                <GitHubBtn />
+                            </li>
+                        </div>
                     </ul>
                 </div>
             </Container>
