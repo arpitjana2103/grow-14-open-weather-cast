@@ -62,7 +62,7 @@ SKY 600 :  #0084d1
     --destructive-foreground: #ffffff;
     --border: #e5e5e5;
     --input: #e5e5e5;
-    --ring: #155dfc;
+    --ring: var(--blue600);
     --chart-1: #91c5ff;
     --chart-2: #3a81f6;
     --chart-3: #2563ef;
@@ -135,7 +135,7 @@ SKY 600 :  #0084d1
     --destructive-foreground: #fafafa;
     --border: #282828;
     --input: #343434;
-    --ring: #737373;
+    --ring: var(--blue600);
     --chart-1: #91c5ff;
     --chart-2: #3a81f6;
     --chart-3: #2563ef;
@@ -244,10 +244,14 @@ SKY 600 :  #0084d1
 }
 
 @layer base {
+    html {
+        font-size: 15px;
+    }
     * {
         @apply border-border outline-ring/50;
+        will-change: background-color, color, border-color;
     }
     body {
-        @apply bg-background text-foreground font-sans;
+        @apply bg-background text-foreground font-sans text-base;
     }
 }
