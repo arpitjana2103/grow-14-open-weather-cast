@@ -3,7 +3,7 @@ import type { TLocationData } from "@/schemas/location.schema";
 import { useLocalStorageState } from "./useLocalStorage";
 
 const STORAGE_KEY = "openweathercast-locations";
-const MAX_LOCATIONS = 5;
+const MAX_LOCATIONS = 3;
 
 export type TSavedLocations = Map<string, TLocationData>;
 export type TStoredLocations = [string, TLocationData][];

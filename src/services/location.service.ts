@@ -14,7 +14,7 @@ export async function searchLocations(query: string) {
         params: {
             key: LOCATIONIQ_API_KEY,
             q: encodeURIComponent(query),
-            limit: 5,
+            limit: 3,
             dedupe: 1,
         },
     });
