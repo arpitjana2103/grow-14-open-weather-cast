@@ -55,7 +55,7 @@ function FindLocationOnMapItem({
     setPopverOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
     return (
-        <li className="flex cursor-pointer items-center gap-3 border border-primary bg-accent2 px-2.5 py-2 transition hover:underline dark:bg-accent2">
+        <li className="flex cursor-pointer items-center gap-3 border border-primary bg-accent2 px-2.5 py-2 transition hover:brightness-103 dark:bg-accent2">
             <NavLink
                 to="map"
                 className="flex w-full items-center justify-center gap-2 text-primary"

@@ -18,7 +18,7 @@ export default function NavBar() {
                         </NavLink>
                     </div>
 
-                    <ul className="flex flex-col items-center gap-5 sm:flex-row">
+                    <ul className="flex flex-col items-center gap-3 sm:flex-row sm:gap-5">
                         <li>
                             <LocationSearch />
                         </li>

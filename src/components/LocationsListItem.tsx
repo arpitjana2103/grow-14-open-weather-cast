@@ -11,7 +11,7 @@ type Props = {
 export function LocationListItem({ location, saved, onSelect }: Props) {
     return (
         <li
-            className="flex cursor-pointer items-center gap-3 border bg-accent px-2.5 py-2 transition hover:brightness-80"
+            className="flex cursor-pointer items-center gap-3 border bg-accent px-2.5 py-2 transition hover:brightness-95"
             onClick={onSelect}
         >
             <span>
