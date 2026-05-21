@@ -15,8 +15,8 @@ export default function GitHubBtn() {
                     icon={GithubIcon}
                     size={19}
                     color="currentColor"
-                    strokeWidth={2}
                     className="text-foreground/80"
+                    strokeWidth={1.7}
                 />
                 <span className="text-foreground/80">Github</span>
             </Button>

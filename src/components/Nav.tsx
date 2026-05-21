@@ -1,3 +1,5 @@
+import { MapsLocation02Icon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import { NavLink } from "react-router";
 
 import { cn } from "@/lib/utils";
@@ -30,6 +32,7 @@ export default function Nav() {
                                 isActive && "bg-primary/10 text-primary border-primary/30",
                             )}
                         >
+                            <HugeiconsIcon icon={MapsLocation02Icon} size={17} />
                             <span>Map</span>
                         </div>
                     )}

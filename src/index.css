@@ -43,7 +43,7 @@ SKY 600 :  #0084d1
 
 :root {
     --blue600: #155dfc;
-    --blue500: #2b7fff;
+    --blue400: #51a2ff;
     --orange600: #f54900;
     --orange100: #feede6;
 
@@ -133,7 +133,7 @@ SKY 600 :  #0084d1
     --background: #0a0a0a;
     --foreground: #fafafa;
 
-    --primary: var(--blue500);
+    --primary: var(--blue400);
     --primary-foreground: #fafafa;
     --secondary-foreground: #fafafa;
 
