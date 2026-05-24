@@ -1,7 +1,7 @@
 import type { TLocationData } from "@/schemas/location.schema";
 
 import { Search, X as Cross } from "lucide-react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group";
 import { useLocationContext } from "@/contexts/location.context";
@@ -16,6 +16,8 @@ import Spinner from "./Spinner";
 export type TLocationsType = "fetched" | "saved";
 
 export default function LocationSearch() {
+    const inputRef = useRef<HTMLInputElement>(null);
+
     // --- Search Query: input value → debounce → fetch results ---
     const [query, setQuery] = useState("");
     const debouncedQuery = useDebounce(query.toLocaleLowerCase(), 400);
@@ -41,29 +43,41 @@ export default function LocationSearch() {
 
     // -- Handler Functions ---
     function handleSelectLocation(location: TLocationData, locationType: TLocationsType) {
-        if (locationType === "fetched") handleSaveLocation(location);
+        if (locationType === "fetched") {
+            handleSaveLocation(location);
+        }
+
+        if (inputRef.current) {
+            inputRef.current.value = location.display_place;
+        }
+
         setCurrentLocation(location);
         setPopverOpen(false);
-        setQuery(location.display_place);
+    }
+
+    function handleClearInput() {
+        setQuery("");
+        if (inputRef.current) {
+            inputRef.current.value = "";
+        }
     }
 
     return (
         <div className="relative" ref={popoverRef}>
             <InputGroup className="relative h-10 w-[20rem]">
                 <InputGroupInput
+                    ref={inputRef}
                     placeholder="Search for location"
-                    value={query}
+                    defaultValue={""}
                     onChange={(e) => setQuery(e.target.value)}
                     onFocus={() => setPopverOpen(true)}
                 />
                 <InputGroupAddon>
                     {isFetching ? <Spinner /> : <Search size={18} strokeWidth={2} />}
                 </InputGroupAddon>
-                {query && (
+                {inputRef.current?.value && (
                     <button
-                        onClick={() => {
-                            setQuery("");
-                        }}
+                        onClick={handleClearInput}
                         className="absolute top-1/2 right-3 z-1000 -translate-y-1/2 cursor-pointer p-0.5"
                     >
                         <Cross size={18} strokeWidth={2} className="text-foreground/60" />
