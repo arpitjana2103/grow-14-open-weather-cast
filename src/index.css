@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap");
 
 @import "tailwindcss";
 @import "tw-animate-css";
@@ -91,6 +92,7 @@ SKY 600 :  #0084d1
     --font-sans: DM Sans, ui-sans-serif, sans-serif, system-ui;
     --font-serif: Georgia, serif;
     --font-mono: JetBrains Mono, ui-monospace, monospace;
+    --font-emoji: Noto Color Emoji, sans-serif;
     --radius: 0rem;
     --shadow-x: 0;
     --shadow-y: 1px;
@@ -249,6 +251,7 @@ SKY 600 :  #0084d1
     --font-sans: var(--font-sans);
     --font-mono: var(--font-mono);
     --font-serif: var(--font-serif);
+    --font-emoji: var(--font-emoji);
 
     --radius-sm: calc(var(--radius) - 0px);
     --radius-md: calc(var(--radius) - 0px);

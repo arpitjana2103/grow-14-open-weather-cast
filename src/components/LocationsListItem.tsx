@@ -10,7 +10,16 @@ type Props = {
 
 const maxAddressLength = 100;
 
+function countryCodeToEmoji(code: string) {
+    return code
+        .toUpperCase()
+        .split("")
+        .map((char) => String.fromCodePoint(127397 + char.charCodeAt(0)))
+        .join("");
+}
+
 export function LocationListItem({ location, saved, onSelect }: Props) {
+    console.log(countryCodeToEmoji(location.address.country_code));
     return (
         <li
             className="flex cursor-pointer items-start gap-3 border-x border-t bg-accent px-2.5 py-2 transition last:border-b hover:brightness-95"
@@ -25,13 +34,18 @@ export function LocationListItem({ location, saved, onSelect }: Props) {
             </span>
 
             <p className="cursor-pointer">
-                <span className="block font-bold">{location.display_place}</span>
+                <span className="flex items-center gap-2">
+                    <span className="font-emoji">
+                        {countryCodeToEmoji(location.address.country_code)}
+                    </span>
+                    <span className="block font-bold">{location.display_place}</span>
+                </span>
 
-                <p className="text-sm leading-[1.3] text-foreground/70">
+                <span className="text-sm leading-[1.3] text-foreground/70">
                     {`${location.display_address?.substring(0, maxAddressLength)}${
                         (location.display_address?.length || 0) > maxAddressLength ? "..." : ""
                     }`}
-                </p>
+                </span>
             </p>
         </li>
     );

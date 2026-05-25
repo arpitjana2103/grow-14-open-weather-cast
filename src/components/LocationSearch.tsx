@@ -1,7 +1,7 @@
 import type { TLocationData } from "@/schemas/location.schema";
 
 import { Search, X as Cross } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group";
 import { useLocationContext } from "@/contexts/location.context";

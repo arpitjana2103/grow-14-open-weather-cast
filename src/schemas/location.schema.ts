@@ -9,6 +9,9 @@ export const LocationDataSchema = z.object({
     display_name: z.string(),
     display_place: z.string(),
     display_address: z.string(),
+    address: z.object({
+        country_code: z.string(),
+    }),
 });
 
 export const LocationDataResponseSchema = z.array(LocationDataSchema);
