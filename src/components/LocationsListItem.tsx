@@ -22,14 +22,14 @@ export function LocationListItem({ location, saved, onSelect }: Props) {
     console.log(countryCodeToEmoji(location.address.country_code));
     return (
         <li
-            className="flex cursor-pointer items-start gap-3 border-x border-t bg-accent px-2.5 py-2 transition last:border-b hover:brightness-95"
+            className="flex cursor-pointer items-start gap-3 border-x border-t bg-accent px-2.5 py-2 transition last:border-b hover:bg-accent/20"
             onClick={onSelect}
         >
             <span>
                 {saved ? (
-                    <History strokeWidth={1.5} className="text-foreground/60" size={22} />
+                    <History strokeWidth={1.5} className="text-foreground" size={22} />
                 ) : (
-                    <MapPinSearch strokeWidth={1.5} className="text-foreground/60" size={22} />
+                    <MapPinSearch strokeWidth={1.5} className="text-foreground" size={22} />
                 )}
             </span>
 
@@ -41,7 +41,7 @@ export function LocationListItem({ location, saved, onSelect }: Props) {
                     <span className="block font-bold">{location.display_place}</span>
                 </span>
 
-                <span className="text-sm leading-[1.3] text-foreground/70">
+                <span className="text-sm leading-[1.3] text-secondary-foreground">
                     {`${location.display_address?.substring(0, maxAddressLength)}${
                         (location.display_address?.length || 0) > maxAddressLength ? "..." : ""
                     }`}

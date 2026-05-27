@@ -1,0 +1,52 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap");
+
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/inter";
+
+/* -----------------------------------------------------------------------------
+ | Theme Files
+ * -------------------------------------------------------------------------- */
+
+@import "./themes/root.css";
+@import "./themes/dark.css";
+@import "./themes/tokens.css";
+
+/*
+|--------------------------------------------------------------------------
+| Custom `dark:` Variant
+|--------------------------------------------------------------------------
+|
+| Defines how Tailwind's `dark:` modifier should work.
+|
+| Example:
+|   dark:bg-black
+|   dark:text-white
+|
+| Meaning:
+|   "Apply this utility when the element exists inside
+|    an ancestor with the `.dark` class."
+*/
+
+@custom-variant dark (&:is(.dark *));
+
+@layer base {
+    html {
+        @apply text-[14px] smsm:text-[15px];
+    }
+    * {
+        @apply border-border outline-ring/50;
+        will-change: background-color, color, border-color;
+    }
+    body {
+        @apply bg-background font-sans text-base text-foreground;
+    }
+}
+
+@layer utilities {
+    .shadow-ring-foreground {
+        @apply ring-2 ring-foreground/10;
+    }
+}

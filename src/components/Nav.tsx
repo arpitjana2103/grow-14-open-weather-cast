@@ -6,15 +6,16 @@ import { cn } from "@/lib/utils";
 
 export default function Nav() {
     return (
-        <ul className="flex h-10 items-center gap-[0.3rem] border px-[0.29rem]">
+        <ul className="flex h-10 items-center gap-[0.3rem] border border-primary/80 px-[0.29rem]">
             <li>
                 <NavLink to="forecast">
                     {({ isActive }) => (
                         <div
                             className={cn(
                                 "border px-2 py-0.5 transition-colors flex items-center gap-1",
-                                "hover:bg-primary/10 hover:text-primary bg-accent/30",
-                                isActive && "bg-primary/10 text-primary border-primary/30",
+                                "hover:bg-accent/20 bg-accent",
+                                isActive &&
+                                    "hover:bg-primary/10 bg-primary/10 text-primary border-primary/80",
                             )}
                         >
                             <span>Forecast</span>
@@ -28,8 +29,9 @@ export default function Nav() {
                         <div
                             className={cn(
                                 "border px-2 py-0.5 transition-colors flex items-center gap-1",
-                                "hover:bg-primary/10 hover:text-primary bg-accent/30",
-                                isActive && "bg-primary/10 text-primary border-primary/30",
+                                "hover:bg-accent/20 bg-accent",
+                                isActive &&
+                                    "hover:bg-primary/10 bg-primary/10 text-primary border-primary/80",
                             )}
                         >
                             <HugeiconsIcon icon={MapsLocation02Icon} size={17} />

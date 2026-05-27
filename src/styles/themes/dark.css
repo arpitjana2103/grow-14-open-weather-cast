@@ -1,0 +1,90 @@
+/*
+|--------------------------------------------------------------------------
+| Dark Theme Variables
+|--------------------------------------------------------------------------
+|
+| Overrides the `:root` CSS variables when the `.dark` class is
+| present on an ancestor element (typically <html> or <body>).
+|
+| Activated via the `dark:` variant defined above using:
+|   @custom-variant dark (&:is(.dark *));
+|
+*/
+
+.dark {
+    --slate950: #020618;
+    --slate900: #0f172b;
+    --slate800: #1d293d;
+    --slate700: #314158;
+    --slate600: #45556c;
+    --slate500: #62748e;
+    --slate100: #f1f5f9;
+    --slate300: #cad5e2;
+    /*---------------------- COLORS ------*/
+    /*
+        background : background color
+        foreground : text color
+        primary : main color
+        ring : input ring
+        border: border color
+        accent: background color for accent elements
+        input: background color for input elements
+        muted-foreground: text color for muted elements ( input placeholder )
+    */
+    --background: var(--slate950);
+    --foreground: var(--slate100);
+    --secondary-foreground: var(--slate300);
+    --primary: var(--blue500);
+    --ring: var(--blue500);
+    --border: var(--slate800);
+    --accent: var(--slate900);
+    --input: var(--slate900);
+    --muted-foreground: var(--slate500);
+    /*----------------*/
+    --card: #171717;
+    --card-foreground: #e2e8f0;
+    --popover: #242424;
+    --popover-foreground: #a9a9a9;
+    --primary-foreground: #dde8e3;
+    --secondary: #242424;
+    --muted: #1f1f1f;
+    --accent-foreground: #fafafa;
+    --destructive: #541c15;
+    --destructive-foreground: #ede9e8;
+
+    /*-----------------------*/
+    --chart-1: #4ade80;
+    --chart-2: #60a5fa;
+    --chart-3: #a78bfa;
+    --chart-4: #fbbf24;
+    --chart-5: #2dd4bf;
+    --sidebar: #121212;
+    --sidebar-foreground: #898989;
+    --sidebar-primary: #006239;
+    --sidebar-primary-foreground: #dde8e3;
+    --sidebar-accent: #313131;
+    --sidebar-accent-foreground: #fafafa;
+    --sidebar-border: #292929;
+    --sidebar-ring: #4ade80;
+    /*
+    --font-sans: Outfit, sans-serif;
+    --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    --font-mono: monospace;
+    --radius: 0.5rem;
+    */
+
+    --shadow-x: 0px;
+    --shadow-y: 1px;
+    --shadow-blur: 3px;
+    --shadow-spread: 0px;
+    --shadow-opacity: 0.17;
+    --shadow-color: #000000;
+    --shadow-2xs: 0px 1px 3px 0px hsl(0 0% 0% / 0.09);
+    --shadow-xs: 0px 1px 3px 0px hsl(0 0% 0% / 0.09);
+    --shadow-sm: 0px 1px 3px 0px hsl(0 0% 0% / 0.17), 0px 1px 2px -1px hsl(0 0% 0% / 0.17);
+    --shadow: 0px 1px 3px 0px hsl(0 0% 0% / 0.17), 0px 1px 2px -1px hsl(0 0% 0% / 0.17);
+    --shadow-md: 0px 1px 3px 0px hsl(0 0% 0% / 0.17), 0px 2px 4px -1px hsl(0 0% 0% / 0.17);
+    --shadow-lg: 0px 1px 3px 0px hsl(0 0% 0% / 0.17), 0px 4px 6px -1px hsl(0 0% 0% / 0.17);
+    --shadow-xl: 0px 1px 3px 0px hsl(0 0% 0% / 0.17), 0px 8px 10px -1px hsl(0 0% 0% / 0.17);
+    --shadow-2xl: 0px 1px 3px 0px hsl(0 0% 0% / 0.43);
+}

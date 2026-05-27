@@ -64,16 +64,19 @@ export default function LocationSearch() {
 
     return (
         <div className="relative" ref={popoverRef}>
-            <InputGroup className="relative h-10 w-[20rem]">
+            <InputGroup className="relative h-10 w-[20rem] border border-border bg-input">
                 <InputGroupInput
                     ref={inputRef}
                     placeholder="Search for location"
                     defaultValue={""}
                     onChange={(e) => setQuery(e.target.value)}
                     onFocus={() => setPopverOpen(true)}
+                    className="text-base placeholder:text-muted-foreground md:text-base"
                 />
                 <InputGroupAddon>
-                    {isFetching ? <Spinner /> : <Search size={18} strokeWidth={2} />}
+                    <div className="w-5 text-primary">
+                        {isFetching ? <Spinner /> : <Search size={18} strokeWidth={2} />}
+                    </div>
                 </InputGroupAddon>
                 {inputRef.current?.value && (
                     <button

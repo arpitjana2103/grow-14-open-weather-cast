@@ -28,7 +28,7 @@ export default function LocationsPopover({
     return (
         <div
             className={cn(
-                "absolute top-12 w-[20rem] transition-all duration-300 bg-background",
+                "absolute top-12 w-[20rem] transition-all duration-300 bg-background p-1 shadow-ring-foreground",
                 isOpen
                     ? "visible opacity-100 translate-y-0"
                     : "invisible opacity-0 -translate-y-2 pointer-events-none",
@@ -39,7 +39,7 @@ export default function LocationsPopover({
                     setPopverOpen={setPopverOpen}
                     haveLocations={haveLocations}
                 />
-                <div className="shadow-md">
+                <div>
                     {locations.map(function (location) {
                         return (
                             <LocationListItem
@@ -66,7 +66,7 @@ function FindLocationOnMapItem({
     return (
         <li
             className={cn(
-                "flex cursor-pointer items-center gap-3 border border-primary/40 bg-accent2 px-2.5 py-2 transition hover:brightness-103 dark:bg-accent2",
+                "flex cursor-pointer items-center gap-3 border border-primary/60 bg-primary/10 px-2.5 py-2 hover:bg-primary/5 transition-colors",
                 haveLocations && "mb-1",
             )}
         >

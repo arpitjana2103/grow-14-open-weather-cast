@@ -1,0 +1,104 @@
+/*
+|--------------------------------------------------------------------------
+| Light Theme Variables (Default)
+|--------------------------------------------------------------------------
+|
+| Defines the raw CSS custom properties used throughout the app in
+| light mode. These are the source-of-truth values referenced by
+| the `@theme inline` token map above.
+|
+| Colors are expressed in oklch() for perceptually uniform color.
+|
+*/
+
+/*
+BLUE 600 : #155dfc
+SKY 600 :  #0084d1
+*/
+
+:root {
+    --slate900: #0f172b;
+    --slate800: #1d293d;
+    --slate700: #314158;
+    --slate600: #45556c;
+    --slate500: #62748e;
+    --slate400: #90a1b9;
+    --slate300: #cad5e2;
+    --slate100: #f1f5f9;
+    --slate200: #e2e8f0;
+    --slate50: #f8fafc;
+    --blue500: #2b7fff;
+    --blue600: #155dfc;
+    --sky600: #0084d1;
+    --orange600: #f54900;
+    --logo-color1: var(--blue500);
+    --logo-color2: var(--blue600);
+
+    /*---------------------- COLORS ------*/
+    /*
+        background : background color
+        foreground : text color
+        primary : main color
+        ring : input ring
+        border: border color
+        accent: background color for accent elements
+        input: background color for input elements
+        muted-foreground: text color for muted elements ( input placeholder )
+    */
+    --background: var(--slate50);
+    --foreground: var(--slate800);
+    --secondary-foreground: var(--slate600);
+    --primary: var(--orange600);
+    --ring: var(--orange600);
+    --border: var(--slate300);
+    --accent: var(--slate200);
+    --input: var(--slate100);
+    --muted-foreground: var(--slate500);
+    /*----------------*/
+    --card: #fcfcfc;
+    --card-foreground: #171717;
+    --popover: #fcfcfc;
+    --popover-foreground: #525252;
+    --primary-foreground: #1e2723;
+    --secondary: #fdfdfd;
+    --muted: #ededed;
+    --accent-foreground: #202020;
+    --destructive: #ca3214;
+    --destructive-foreground: #fffcfc;
+
+    /*-----------------------*/
+    --chart-1: #72e3ad;
+    --chart-2: #3b82f6;
+    --chart-3: #8b5cf6;
+    --chart-4: #f59e0b;
+    --chart-5: #10b981;
+    --sidebar: #fcfcfc;
+    --sidebar-foreground: #707070;
+    --sidebar-primary: #72e3ad;
+    --sidebar-primary-foreground: #1e2723;
+    --sidebar-accent: #ededed;
+    --sidebar-accent-foreground: #202020;
+    --sidebar-border: #dfdfdf;
+    --sidebar-ring: #72e3ad;
+    --font-sans: DM Sans, ui-sans-serif, sans-serif, system-ui;
+    --font-serif: Georgia, serif;
+    --font-mono: JetBrains Mono, ui-monospace, monospace;
+    --font-emoji: Noto Color Emoji, sans-serif;
+    --radius: 0rem;
+    --shadow-x: 0px;
+    --shadow-y: 1px;
+    --shadow-blur: 3px;
+    --shadow-spread: 0px;
+    --shadow-opacity: 0.17;
+    --shadow-color: #000000;
+    --shadow-2xs: 0px 1px 3px 0px hsl(0 0% 0% / 0.09);
+    --shadow-xs: 0px 1px 3px 0px hsl(0 0% 0% / 0.09);
+    --shadow-sm: 0px 1px 3px 0px hsl(0 0% 0% / 0.17), 0px 1px 2px -1px hsl(0 0% 0% / 0.17);
+    --shadow: 0px 1px 3px 0px hsl(0 0% 0% / 0.17), 0px 1px 2px -1px hsl(0 0% 0% / 0.17);
+    --shadow-md: 0px 1px 3px 0px hsl(0 0% 0% / 0.17), 0px 2px 4px -1px hsl(0 0% 0% / 0.17);
+    --shadow-lg: 0px 1px 3px 0px hsl(0 0% 0% / 0.17), 0px 4px 6px -1px hsl(0 0% 0% / 0.17);
+    --shadow-xl: 0px 1px 3px 0px hsl(0 0% 0% / 0.17), 0px 8px 10px -1px hsl(0 0% 0% / 0.17);
+    --shadow-2xl: 0px 1px 3px 0px hsl(0 0% 0% / 0.43);
+    --tracking-normal: 0.025em;
+    --spacing: 0.25rem;
+}
