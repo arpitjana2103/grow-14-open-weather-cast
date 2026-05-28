@@ -24,7 +24,7 @@ export default function UnitSystemToggle() {
         <div>
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                    <Button className="h-10 cursor-pointer border border-border bg-accent text-foreground hover:bg-accent/20 focus-visible:border-border focus-visible:ring-0 data-[state=open]:border data-[state=open]:border-primary/80 data-[state=open]:bg-primary/10 data-[state=open]:text-primary/90">
+                    <Button className="h-10 cursor-pointer border border-border bg-accent text-foreground hover:bg-accent/20 focus-visible:border-border focus-visible:ring-0 data-[state=open]:border data-[state=open]:border-primary/60 data-[state=open]:bg-primary/10 data-[state=open]:text-primary/90">
                         <span className="flex items-center gap-1">
                             <HugeiconsIcon
                                 icon={Setting07Icon}
@@ -43,7 +43,7 @@ export default function UnitSystemToggle() {
                         </span>
                     </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="shadow-ring-foreground mt-[0.20rem] no-scrollbar w-fit border-3 border-background bg-accent px-2.5 py-2 text-foreground shadow-none">
+                <DropdownMenuContent className="shadow-ring-foreground z-1001 mt-[0.20rem] no-scrollbar w-fit border-3 border-background bg-accent px-2.5 py-2 text-foreground shadow-none">
                     <p className="mb-1.5 text-sm text-secondary-foreground">Unit Settings</p>
                     <RadioGroup
                         defaultValue={unit}
@@ -54,7 +54,7 @@ export default function UnitSystemToggle() {
                             <RadioGroupItem
                                 value="metric"
                                 id="r1"
-                                className="cursor-pointer border-3 border-secondary-foreground/50 bg-secondary-foreground/10 transition-colors data-checked:border-primary/70 data-checked:bg-primary/40 dark:data-checked:border-primary/90 dark:data-checked:bg-primary/40"
+                                className="cursor-pointer border-3 border-secondary-foreground/50 bg-secondary-foreground/10 transition-colors data-checked:border-primary/60 data-checked:bg-primary/40 dark:data-checked:border-primary/60 dark:data-checked:bg-primary/40"
                             />
                             <Label htmlFor="r1" className="cursor-pointer text-base">
                                 <div className="flex items-center gap-2">
@@ -74,7 +74,7 @@ export default function UnitSystemToggle() {
                             <RadioGroupItem
                                 value="imperial"
                                 id="r2"
-                                className="cursor-pointer border-3 border-secondary-foreground/50 bg-secondary-foreground/10 transition-colors data-checked:border-primary/70 data-checked:bg-primary/40 dark:data-checked:border-primary/90 dark:data-checked:bg-primary/40"
+                                className="cursor-pointer border-3 border-secondary-foreground/50 bg-secondary-foreground/10 transition-colors data-checked:border-primary/60 data-checked:bg-primary/40 dark:data-checked:border-primary/60 dark:data-checked:bg-primary/40"
                             />
                             <Label htmlFor="r2" className="cursor-pointer text-base">
                                 <div className="flex items-center gap-2">

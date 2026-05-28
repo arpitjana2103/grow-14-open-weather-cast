@@ -34,7 +34,7 @@
 
 @layer base {
     html {
-        @apply text-[14px] smsm:text-[15px];
+        @apply text-[14px] xs:text-[15px];
     }
     * {
         @apply border-border outline-ring/50;
@@ -47,6 +47,10 @@
 
 @layer utilities {
     .shadow-ring-foreground {
-        @apply ring-2 ring-foreground/10;
+        @apply ring-2 ring-border/70;
+    }
+
+    .text-secondary {
+        @apply text-secondary-foreground/80;
     }
 }

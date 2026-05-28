@@ -30,8 +30,8 @@ const WeatherConditionSchema = z.object({
 
 const CurrentWeatherSchema = z.object({
     dt: z.number().int(),
-    sunrise: z.number().int(),
-    sunset: z.number().int(),
+    sunrise: z.number().int().optional(),
+    sunset: z.number().int().optional(),
     temp: z.number(),
     feels_like: z.number(),
     pressure: z.number().int(),

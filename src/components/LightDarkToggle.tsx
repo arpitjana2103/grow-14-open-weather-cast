@@ -23,7 +23,7 @@ export default function LightDarkToggle() {
     return (
         <div>
             <Button
-                className="h-10 w-10 cursor-pointer border border-primary/80 bg-primary/10 transition-colors hover:bg-primary/5"
+                className="h-10 w-10 cursor-pointer border border-primary/60 bg-primary/10 transition-colors hover:bg-primary/5"
                 onClick={handleToggle}
             >
                 {!isDark && <CloudSun strokeWidth={1.5} className="size-5.5 text-primary/90" />}
