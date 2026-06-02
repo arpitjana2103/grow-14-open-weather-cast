@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { LocationDataResponseSchema } from "@/schemas/location.schema";
+import { LocationDataResponseSchema, LocationDataSchema } from "@/schemas/location.schema";
 
 const LOCATIONIQ_API_KEY = import.meta.env.VITE_LOCATIONIQ_API_KEY;
 
@@ -20,5 +20,18 @@ export async function searchLocations(query: string) {
     });
 
     const data = LocationDataResponseSchema.parse(res.data);
+    return data;
+}
+
+export async function getLocationByLatLon(lat: number, lon: number) {
+    const res = await axiosClient.get("/reverse", {
+        params: {
+            key: LOCATIONIQ_API_KEY,
+            lat,
+            lon,
+            format: "json",
+        },
+    });
+    const data = LocationDataSchema.parse(res.data);
     return data;
 }

@@ -1,4 +1,4 @@
-import { Location01Icon, Time01Icon, Time02Icon } from "@hugeicons/core-free-icons";
+import { Location01Icon, Time01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { NavLink } from "react-router";
 
@@ -14,8 +14,16 @@ import WeatherIcons from "../WeatherIcons";
 export default function WeatherCardOnMap({ className }: { className?: string }) {
     const { currentLocation } = useLocationContext();
     const { display_place, address } = currentLocation ?? {};
-    const { state, country, postcode } = address ?? {};
-    const _address = [display_place, country, state, postcode].filter(Boolean).join(", ");
+    const { state, country, postcode, quarter, city, municipality, state_district, region, town } =
+        address ?? {};
+    const _address = [
+        display_place || quarter || city || town || municipality || state_district || region,
+        country,
+        state,
+        postcode,
+    ]
+        .filter(Boolean)
+        .join(", ");
 
     const { unit: unitType } = useUnitContext();
     const { isFetching, data } = useWeatherQuery(
@@ -91,11 +99,13 @@ export default function WeatherCardOnMap({ className }: { className?: string }) 
                     <span></span>
                 </span>
 
-                <NavLink to="/forecast">
-                    <Button className="mt-4 w-fit cursor-pointer border-primary bg-primary/10 p-4 text-base font-normal text-primary hover:bg-primary/20">
-                        See Full Forecast
-                    </Button>
-                </NavLink>
+                <div className="flex justify-end">
+                    <NavLink to="/forecast">
+                        <Button className="mt-4 w-fit cursor-pointer border-primary bg-primary/10 py-4 text-base font-normal text-primary hover:bg-primary/20">
+                            See Full Forecast
+                        </Button>
+                    </NavLink>
+                </div>
             </div>
         </div>
     );

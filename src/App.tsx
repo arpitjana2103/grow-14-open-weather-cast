@@ -1,8 +1,9 @@
 import { createBrowserRouter, Navigate } from "react-router";
 import { RouterProvider } from "react-router/dom";
 
+import AppLayout from "./components/layout/AppLayout";
 import ForecastPage from "./pages/ForecastPage";
-import Map from "./pages/MapPage";
+import MapPage from "./pages/MapPage";
 
 function App() {
     return (
@@ -10,16 +11,12 @@ function App() {
             router={createBrowserRouter([
                 {
                     path: "/",
-                    index: true,
-                    element: <Navigate replace to="forecast" />,
-                },
-                {
-                    path: "/forecast",
-                    element: <ForecastPage />,
-                },
-                {
-                    path: "/map",
-                    element: <Map />,
+                    element: <AppLayout />,
+                    children: [
+                        { index: true, element: <Navigate replace to="forecast" /> },
+                        { path: "forecast", element: <ForecastPage /> },
+                        { path: "map", element: <MapPage /> },
+                    ],
                 },
             ])}
         />

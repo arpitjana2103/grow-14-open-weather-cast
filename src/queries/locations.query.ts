@@ -1,10 +1,10 @@
 import type { TLocationData } from "@/schemas/location.schema";
 
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 import sleepQuery from "@/utils/sleep-query.util";
 
-import { searchLocations } from "../services/location.service";
+import { getLocationByLatLon, searchLocations } from "../services/location.service";
 
 export function useLocationSearchQuery(query: string) {
     return useQuery<TLocationData[]>({
@@ -15,5 +15,17 @@ export function useLocationSearchQuery(query: string) {
         },
         enabled: query.length > 0,
         staleTime: 1000 * 60 * 5,
+        retry: false,
     });
+}
+
+export function useLocationByLatLng() {
+    const queryClient = useQueryClient();
+    async function fetchLocationByLatLng(lat: number, lon: number) {
+        return queryClient.fetchQuery({
+            queryKey: ["location", lat, lon],
+            queryFn: () => getLocationByLatLon(lat, lon),
+        });
+    }
+    return { fetchLocationByLatLng };
 }

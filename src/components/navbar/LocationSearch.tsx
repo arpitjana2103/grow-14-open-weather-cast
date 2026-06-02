@@ -20,7 +20,7 @@ export default function LocationSearch() {
 
     // --- Search Query: input value → debounce → fetch results ---
     const [query, setQuery] = useState("");
-    const debouncedQuery = useDebounce(query.toLocaleLowerCase(), 400);
+    const debouncedQuery = useDebounce(query.toLocaleLowerCase(), 600);
     const { data: fetchedLocations = [], isFetching } = useLocationSearchQuery(debouncedQuery);
 
     // --- Location Selection: save picked location, fall back to saved list ---
@@ -48,7 +48,7 @@ export default function LocationSearch() {
         }
 
         if (inputRef.current) {
-            inputRef.current.value = location.display_place;
+            inputRef.current.value = location.display_place!;
         }
 
         setCurrentLocation(location);
@@ -81,7 +81,7 @@ export default function LocationSearch() {
                 {inputRef.current?.value && (
                     <button
                         onClick={handleClearInput}
-                        className="absolute top-1/2 right-3 z-1000 -translate-y-1/2 cursor-pointer p-0.5"
+                        className="absolute top-[0.46rem] right-[0.46rem] z-1000 flex h-6 w-6 cursor-pointer items-center justify-center rounded-sm bg-input"
                     >
                         <Cross size={18} strokeWidth={2} className="text-foreground/60" />
                     </button>

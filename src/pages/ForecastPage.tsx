@@ -1,12 +1,10 @@
 import CurrentWeatherCard from "../components/forecastPage/current-weather-card/CurrentWeatherCard";
 import CurrentLocation from "../components/forecastPage/CurrentLocation";
 import Container from "../components/layout/Container";
-import NavBar from "../components/navbar/NavBar";
 
 export default function ForecastPage() {
     return (
         <>
-            <NavBar />
             <main>
                 <Container>
                     <CurrentLocation />
@@ -15,6 +13,7 @@ export default function ForecastPage() {
                             <CurrentWeatherCard />
                         </div>
                     </div>
+                    <div></div>
                 </Container>
             </main>
         </>
