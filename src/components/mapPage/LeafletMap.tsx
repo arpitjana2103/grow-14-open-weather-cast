@@ -1,3 +1,5 @@
+import type { TMapLayers } from "./MapLayerControl";
+
 import { MapContainer, Marker, TileLayer, useMap, ZoomControl } from "react-leaflet";
 
 import { useLocationContext } from "@/contexts/location.context";
@@ -5,7 +7,7 @@ import { cn } from "@/lib/utils";
 import { useLocationByLatLng } from "@/queries/locations.query";
 import { API_KEY as OPENWEATHERMAP_API_KEY } from "@/services/weather.service";
 
-export function LeafletMap({ className }: { className?: string }) {
+export function LeafletMap({ className, mapLayer }: { className?: string; mapLayer: TMapLayers }) {
     const { currentLocation, setCurrentLocation } = useLocationContext();
     const lat = Number(currentLocation?.lat) || 0;
     const lon = Number(currentLocation?.lon) || 0;
@@ -16,8 +18,6 @@ export function LeafletMap({ className }: { className?: string }) {
         const data = await fetchLocationByLatLng(latVal, lonVal);
         setCurrentLocation(data);
     }
-
-    const layer = "temp_new";
 
     return (
         <div className={cn("rounded-md overflow-hidden", className)}>
@@ -40,10 +40,14 @@ export function LeafletMap({ className }: { className?: string }) {
                 />*/}
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://api.maptiler.com/maps/openstreetmap-dark/256/{z}/{x}/{y}@2x.png?key=RqBinbOIimuU9Q9zXtXK"
+                    url={
+                        mapLayer === "search"
+                            ? "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                            : "https://api.maptiler.com/maps/openstreetmap-dark/256/{z}/{x}/{y}@2x.png?key=RqBinbOIimuU9Q9zXtXK"
+                    }
                 />
                 <TileLayer
-                    url={`https://tile.openweathermap.org/map/${layer}/{z}/{x}/{y}.png?appid=${OPENWEATHERMAP_API_KEY}`}
+                    url={`https://tile.openweathermap.org/map/${mapLayer}/{z}/{x}/{y}.png?appid=${OPENWEATHERMAP_API_KEY}`}
                 />
                 <MapClick lat={lat} lon={lon} onMapClick={onMapClick} />
                 <Marker position={[lat, lon]} />
