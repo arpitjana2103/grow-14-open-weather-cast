@@ -33,6 +33,7 @@ SKY 600 :  #0084d1
     --orange600: #f54900;
     --orange500: #ff6900;
     --orange400: #ff8904;
+    --orange300: #ffb86a;
     --logo-color1: var(--blue500);
     --logo-color2: var(--blue600);
 
@@ -71,8 +72,8 @@ SKY 600 :  #0084d1
     --destructive-foreground: #fffcfc;
 
     /*-----------------------*/
-    --chart-1: #72e3ad;
-    --chart-2: #3b82f6;
+    --chart-1: var(--orange600);
+    --chart-2: var(--orange300);
     --chart-3: #8b5cf6;
     --chart-4: #f59e0b;
     --chart-5: #10b981;

@@ -1,10 +1,11 @@
 "use client";
 
-import { Clock01Icon } from "@hugeicons/core-free-icons";
+import { ArrowLeft01Icon, ArrowRight01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { TrendingUp } from "lucide-react";
+import { useMemo, useState } from "react";
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
 
+import { Button } from "@/components/ui/button";
 import {
     Card,
     CardContent,
@@ -19,6 +20,7 @@ import {
     ChartTooltipContent,
     type ChartConfig,
 } from "@/components/ui/chart";
+import WeatherIcons from "@/components/WeatherIcons";
 import { useLocationContext } from "@/contexts/location.context";
 import { useUnitContext } from "@/contexts/unit.context";
 import { useWeatherQuery } from "@/queries/weather.query";
@@ -26,12 +28,22 @@ import { getTimeDetails } from "@/utils/time-fn.util";
 
 const CustomToolTip = function ({ active, payload, label }: any) {
     if (!active || !payload?.length) return null;
+    const time = new Date(label);
+    const [hour12, minute, period] = time
+        .toLocaleTimeString("en-US", {
+            hour: "numeric",
+            minute: "2-digit",
+            hour12: true,
+        })
+        .split(/:| /);
+
     return (
-        <div className="rounded-lg border bg-white p-3 shadow-md">
-            <p className="font-semibold">{label}</p>
+        <div className="rounded-sm bg-slate-900 p-3 shadow-sm dark:bg-slate-50">
+            <p className="mb-2 font-semibold text-slate-300 dark:text-slate-800">{`${hour12}:${minute} ${period}`}</p>
             {payload.map((entry: any) => (
                 <p key={entry.dataKey} style={{ color: entry.color }}>
-                    {entry.name}: {entry.value}°
+                    {entry.name.replace(/_/g, " ").replace(/\b\w/g, (c: string) => c.toUpperCase())}
+                    &nbsp;:&nbsp;{Math.round(entry.value)}°
                 </p>
             ))}
         </div>
@@ -42,6 +54,16 @@ const CustomToolTip = function ({ active, payload, label }: any) {
 const CustomXTick = ({ x, y, payload, hourlyDataMap }: any) => {
     const ISOKey = payload.value;
     const hourData = hourlyDataMap.get(ISOKey);
+    const timeData = hourData.timeData;
+    const icon = hourData.icon;
+    const temp: number = hourData.temp;
+    const feelsLike = hourData.feels_like;
+
+    const timeTxt = timeData.isToday
+        ? "Today"
+        : timeData.isTomorrow
+          ? "Tomorrow"
+          : `${timeData.day} ${timeData.shortMonth}`;
 
     const iconSize = 16;
     return (
@@ -53,12 +75,22 @@ const CustomXTick = ({ x, y, payload, hourlyDataMap }: any) => {
                 height={iconSize}
                 style={{ overflow: "visible" }}
             >
-                <HugeiconsIcon
-                    icon={Clock01Icon}
-                    size={iconSize}
-                    strokeWidth={1.5}
-                    color="currentColor"
-                />
+                <div className="flex w-20 translate-x-[-2rem] flex-col items-center justify-center text-secondary-foreground">
+                    <WeatherIcons
+                        strokeWidth={1}
+                        type={icon}
+                        className="mb-[0.3rem] h-8 w-8 text-primary"
+                    />
+                    <span>{timeTxt}</span>
+                    <span>
+                        {timeData.hour12}:{timeData.minute} {timeData.period}
+                    </span>
+                    <span className="mt-[0.3rem] flex">
+                        <span className="font-semibold text-primary">{Math.round(temp)}°</span>
+                        &nbsp;/&nbsp;
+                        <span>{Math.round(feelsLike)}°</span>
+                    </span>
+                </div>
             </foreignObject>
             <text
                 x={0}
@@ -68,7 +100,8 @@ const CustomXTick = ({ x, y, payload, hourlyDataMap }: any) => {
                 fontSize={11}
                 opacity={0.7}
             >
-                {hourData.timeData.hour24} {hourData.timeData.minute}
+                <tspan></tspan>
+                <tspan> </tspan>
             </text>
         </g>
     );
@@ -76,7 +109,11 @@ const CustomXTick = ({ x, y, payload, hourlyDataMap }: any) => {
 
 export const description = "An area chart with axes";
 
+const MIN_SLOT = 1;
+const MAX_SLOT = 4;
 export function TempChart() {
+    const [slot, setSlot] = useState(MIN_SLOT);
+
     const { currentLocation } = useLocationContext();
     const { unit: unitType } = useUnitContext();
     const { isFetching, data } = useWeatherQuery(
@@ -86,33 +123,43 @@ export function TempChart() {
     );
     const timezone = data?.timezone;
     const hourlyData = data?.hourly;
-    const hourlyDataMap = new Map(
-        hourlyData?.map(function (hour) {
-            const timeData = getTimeDetails({
-                utcTimestampInSeconds: hour.dt,
-                timezone: timezone!,
-            });
-            const key = timeData.ISOString;
-            const value = {
-                timeData: timeData,
-                temp: hour.temp,
-                feels_like: hour.feels_like,
-                uvi: hour.uvi,
-                icon: hour.weather[0].icon,
-            };
-            return [key, value];
-        }),
+    const hourlyDataMap = useMemo(
+        () =>
+            new Map(
+                hourlyData?.map((hour) => {
+                    const timeData = getTimeDetails({
+                        utcTimestampInSeconds: hour.dt,
+                        timezone: timezone!,
+                    });
+
+                    return [
+                        timeData.ISOString,
+                        {
+                            timeData,
+                            temp: hour.temp,
+                            feels_like: hour.feels_like,
+                            uvi: hour.uvi,
+                            icon: hour.weather[0].icon,
+                        },
+                    ];
+                }),
+            ),
+        [hourlyData, timezone],
     );
-    const chartData = Array.from(hourlyDataMap.entries()).map(function ([isoKey, hour]) {
-        return {
-            time: isoKey,
-            temp: hour.temp,
-            feels_like: hour.feels_like,
-        };
-    });
+    const completeChartData = useMemo(
+        () =>
+            Array.from(hourlyDataMap.entries()).map(([time, hour]) => ({
+                time,
+                actual: hour.temp,
+                feels_like: hour.feels_like,
+            })),
+        [hourlyDataMap],
+    );
+
+    const chartData = completeChartData.slice(12 * (slot - 1), 12 * slot);
 
     const chartConfig = {
-        temp: {
+        actual: {
             label: "Temperature",
             color: "var(--chart-1)",
         },
@@ -122,64 +169,97 @@ export function TempChart() {
         },
     } satisfies ChartConfig;
 
-    console.log(chartData);
-
     const dataPoints = chartData.length;
-    const minWidthPerPoint = 25;
+    const minWidthPerPoint = 80;
+
+    function handlePlusSlot() {
+        setSlot((s) => Math.min(s + 1, MAX_SLOT));
+    }
+
+    function handleMinusSlot() {
+        setSlot((s) => Math.max(s - 1, MIN_SLOT));
+    }
 
     if (isFetching) {
         return <div>Loading...</div>;
     }
     return (
-        <div className="w-full overflow-x-auto border p-4">
-            <div style={{ minWidth: `${(dataPoints || 0) * minWidthPerPoint}px` }}>
-                <ChartContainer config={chartConfig} className="h-80 w-full">
-                    <AreaChart
-                        accessibilityLayer
-                        data={chartData}
-                        margin={{
-                            left: -20,
-                            right: 12,
-                            bottom: 10,
-                        }}
+        <div className="mt-6 w-full max-w-280 rounded-md border border-border/30 bg-slate-100 p-4 shadow-2xs dark:bg-slate-900">
+            <div className="mb-4 flex w-full justify-between gap-0">
+                <span className="text-sm">Temperature ( Actual / Feels Like )</span>
+                <div>
+                    <Button
+                        className="h-8 w-9 cursor-pointer rounded-sm bg-transparent hover:bg-transparent"
+                        onClick={handleMinusSlot}
                     >
-                        <CartesianGrid vertical={false} />
-                        <XAxis
-                            dataKey="time"
-                            tickLine={false}
-                            axisLine={false}
-                            tickMargin={8}
-                            interval={2}
-                            tick={<CustomXTick hourlyDataMap={hourlyDataMap} />}
-                            height={44}
+                        <HugeiconsIcon
+                            className="size-5 text-secondary-foreground"
+                            icon={ArrowLeft01Icon}
+                            strokeWidth={2}
                         />
-                        <YAxis
-                            tickLine={false}
-                            axisLine={false}
-                            tickMargin={8}
-                            tickCount={5}
-                            height={50}
+                    </Button>
+                    <Button
+                        className="h-8 w-9 cursor-pointer rounded-sm bg-transparent hover:bg-transparent"
+                        onClick={handlePlusSlot}
+                    >
+                        <HugeiconsIcon
+                            className="size-5 text-secondary-foreground"
+                            icon={ArrowRight01Icon}
+                            strokeWidth={2}
                         />
-                        <ChartTooltip cursor={true} content={<CustomToolTip />} />
-                        {/*<ChartTooltip cursor={true} content={<ChartTooltipContent />} />*/}
-                        <Area
-                            dataKey="temp"
-                            type="natural"
-                            fill="var(--color-temp)"
-                            fillOpacity={0.4}
-                            stroke="var(--color-temp)"
-                            stackId="a"
-                        />
-                        <Area
-                            dataKey="feels_like"
-                            type="natural"
-                            fill="var(--color-feels_like)"
-                            fillOpacity={0.4}
-                            stroke="var(--color-feels_like)"
-                            stackId="a"
-                        />
-                    </AreaChart>
-                </ChartContainer>
+                    </Button>
+                </div>
+            </div>
+            <div className="lite-scrollbar relative w-full overflow-x-auto">
+                <div style={{ minWidth: `${(dataPoints || 0) * minWidthPerPoint}px` }}>
+                    <ChartContainer config={chartConfig} className="h-108 w-full">
+                        <AreaChart
+                            accessibilityLayer
+                            data={chartData}
+                            margin={{
+                                left: -20,
+                                right: 40,
+                                bottom: 65,
+                            }}
+                        >
+                            <CartesianGrid vertical={true} horizontal={true} />
+                            <XAxis
+                                dataKey="time"
+                                tickLine={false}
+                                axisLine={false}
+                                tickMargin={8}
+                                interval={0}
+                                tick={<CustomXTick hourlyDataMap={hourlyDataMap} />}
+                                height={44}
+                            />
+                            <YAxis
+                                tickLine={false}
+                                axisLine={false}
+                                tickMargin={8}
+                                tickCount={5}
+                                height={50}
+                            />
+                            <ChartTooltip cursor={true} content={<CustomToolTip />} />
+                            {/*<ChartTooltip cursor={true} content={<ChartTooltipContent />} />*/}
+                            <Area
+                                dataKey="actual"
+                                type="natural"
+                                fill="var(--color-actual)"
+                                fillOpacity={0.4}
+                                stroke="var(--color-actual)"
+                                stackId="a"
+                            />
+                            <Area
+                                dataKey="feels_like"
+                                type="natural"
+                                fill="var(--color-feels_like)"
+                                fillOpacity={0.4}
+                                stroke="var(--color-feels_like)"
+                                stackId="a"
+                            />
+                        </AreaChart>
+                    </ChartContainer>
+                </div>
             </div>
         </div>
     );

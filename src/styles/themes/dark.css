@@ -20,6 +20,9 @@
     --slate500: #62748e;
     --slate100: #f1f5f9;
     --slate300: #cad5e2;
+    --blue300: #8ec5ff;
+    --blue500: #2b7fff;
+
     /*---------------------- COLORS ------*/
     /*
         background : background color
@@ -53,8 +56,8 @@
     --destructive-foreground: #ede9e8;
 
     /*-----------------------*/
-    --chart-1: #4ade80;
-    --chart-2: #60a5fa;
+    --chart-1: var(--blue600);
+    --chart-2: var(--blue300);
     --chart-3: #a78bfa;
     --chart-4: #fbbf24;
     --chart-5: #2dd4bf;
