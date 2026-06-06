@@ -1,25 +1,10 @@
-"use client";
-
 import { ArrowLeft01Icon, ArrowRight01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { useMemo, useState } from "react";
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
 
 import { Button } from "@/components/ui/button";
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card";
-import {
-    ChartContainer,
-    ChartTooltip,
-    ChartTooltipContent,
-    type ChartConfig,
-} from "@/components/ui/chart";
+import { ChartContainer, ChartTooltip, type ChartConfig } from "@/components/ui/chart";
 import WeatherIcons from "@/components/WeatherIcons";
 import { useLocationContext } from "@/contexts/location.context";
 import { useUnitContext } from "@/contexts/unit.context";
@@ -50,7 +35,6 @@ const CustomToolTip = function ({ active, payload, label }: any) {
     );
 };
 
-// Custom tick renders a HugeIcon above the tick value
 const CustomXTick = ({ x, y, payload, hourlyDataMap }: any) => {
     const ISOKey = payload.value;
     const hourData = hourlyDataMap.get(ISOKey);
@@ -75,7 +59,7 @@ const CustomXTick = ({ x, y, payload, hourlyDataMap }: any) => {
                 height={iconSize}
                 style={{ overflow: "visible" }}
             >
-                <div className="flex w-20 translate-x-[-2rem] flex-col items-center justify-center text-secondary-foreground">
+                <div className="flex w-20 -translate-x-8 flex-col items-center justify-center text-secondary-foreground">
                     <WeatherIcons
                         strokeWidth={1}
                         type={icon}
@@ -92,22 +76,9 @@ const CustomXTick = ({ x, y, payload, hourlyDataMap }: any) => {
                     </span>
                 </div>
             </foreignObject>
-            <text
-                x={0}
-                y={iconSize + 14}
-                textAnchor="middle"
-                fill="currentColor"
-                fontSize={11}
-                opacity={0.7}
-            >
-                <tspan></tspan>
-                <tspan> </tspan>
-            </text>
         </g>
     );
 };
-
-export const description = "An area chart with axes";
 
 const MIN_SLOT = 1;
 const MAX_SLOT = 4;
