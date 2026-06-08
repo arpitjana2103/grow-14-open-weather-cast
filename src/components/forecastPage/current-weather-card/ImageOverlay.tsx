@@ -1,5 +1,7 @@
 import type { TWeatherIcon } from "@/schemas/weather.schema";
 
+import { useEffect, useState } from "react";
+
 import { cn } from "@/lib/utils";
 
 const weatherImageDescription = {
@@ -38,13 +40,29 @@ export default function ImageOverlay({
     icon: TWeatherIcon;
     className?: string;
 }) {
+    const [isLoaded, setIsLoaded] = useState(false);
+    useEffect(() => {
+        setIsLoaded(false);
+    }, [icon]);
+
     return (
         <div className={cn("relative overflow-hidden dark:border-primary rounded-md", className)}>
             {/* Background weather image */}
+            <div
+                className={cn("absolute inset-0 bg-cover ...", isLoaded ? "opacity-0" : "blur-sm")}
+                style={{ backgroundImage: `url(/images/${icon}-sm.webp)` }}
+            />
+
             <img
-                src={`/images/${icon}.jpg`}
+                key={icon}
+                src={`/images/${icon}.webp`}
                 alt={weatherImageDescription[icon]}
-                className="absolute inset-0 h-full w-full object-cover"
+                className={cn(
+                    "absolute inset-0 h-full w-full object-cover transition-opacity duration-500",
+                    isLoaded ? "opacity-100" : "opacity-0",
+                )}
+                onLoad={() => setIsLoaded(true)}
+                loading="lazy"
             />
 
             {/* Dark gradient overlay (transparent → black, bottom-heavy) */}
