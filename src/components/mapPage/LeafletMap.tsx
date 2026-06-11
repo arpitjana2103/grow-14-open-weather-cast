@@ -31,7 +31,7 @@ export function LeafletMap({ className, mapLayer }: { className?: string; mapLay
         <div className={cn("rounded-md overflow-hidden", className)}>
             <MapContainer
                 center={[lat, lon]}
-                zoom={7}
+                zoom={10}
                 scrollWheelZoom={true}
                 className="h-full w-full"
                 zoomControl={false}

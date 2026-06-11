@@ -24,6 +24,8 @@
         muted-foreground: text color for muted elements ( input placeholder )
     */
     --background: var(--slate950);
+    --opposite-background: var(--slate50);
+    --opposite-foreground: var(--slate800);
     --foreground: var(--slate100);
     --secondary-foreground: var(--slate400);
     --primary: var(--blue500);

@@ -163,6 +163,7 @@ export const AirPollutionResponseSchema = z.object({
     list: z.array(AirPollutionItemSchema).min(1),
 });
 
+export type TAirPoluctants = keyof z.infer<typeof AirPollutionComponentsSchema>;
 export type TAirPollutionResponse = z.infer<typeof AirPollutionResponseSchema>;
 export type TAirPollutionItem = z.infer<typeof AirPollutionItemSchema>;
 export type TAirPollutionComponents = z.infer<typeof AirPollutionComponentsSchema>;

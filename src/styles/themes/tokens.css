@@ -17,6 +17,8 @@
 @theme inline {
     --color-background: var(--background);
     --color-foreground: var(--foreground);
+    --color-opposite-background: var(--opposite-background);
+    --color-opposite-foreground: var(--opposite-foreground);
     --color-white-foreground: var(--white-foreground);
     --color-card: var(--card);
     --color-card-foreground: var(--card-foreground);

@@ -65,7 +65,7 @@ export default function CurrentWeatherDetails({
     ];
 
     return (
-        <div className={cn("flex flex-col justify-between gap-6", className)}>
+        <div className={cn("flex flex-col justify-between h-full gap-6", className)}>
             <div className="flex items-center gap-3">
                 <WeatherIcons
                     type={icon}
@@ -73,12 +73,16 @@ export default function CurrentWeatherDetails({
                     className="align-end block h-18 w-18 text-primary xs:h-20 xs:w-20"
                 />
                 <span>
-                    <span className="flex items-end gap-3 border-b-0 xs:border-b-2">
+                    <span className="flex items-end gap-3 border-b-0">
                         <span className="flex items-start gap-1">
-                            <span className="text-3xl xs:text-5xl">{Math.round(temperature)}</span>
-                            <span className="text-lg font-semibold xs:text-2xl">{tempUnit}</span>
+                            <span className="text-3xl font-bold text-secondary-foreground xs:text-5xl">
+                                {Math.round(temperature)}
+                            </span>
+                            <span className="text-lg font-semibold text-secondary-foreground xs:text-2xl">
+                                {tempUnit}
+                            </span>
                         </span>
-                        <span className="text-lg xs:text-2xl">{description}</span>
+                        <span className="text-lg text-primary xs:text-2xl">{description}</span>
                     </span>
                     <span>
                         <span className="block pt-0.5 text-sm text-secondary-foreground xs:text-base">
@@ -88,7 +92,7 @@ export default function CurrentWeatherDetails({
                     </span>
                 </span>
             </div>
-            <div className="lite-scrollbar w-full overflow-x-scroll" style={{}}>
+            <div className="lite-scrollbar w-full overflow-x-scroll">
                 <div className="flex gap-1">
                     {wData.map((item) => (
                         <div
@@ -100,14 +104,14 @@ export default function CurrentWeatherDetails({
                                 <span>{item.name}</span>
                                 {item.name === "Wind" && (
                                     <HugeiconsIcon
-                                        className={`h-4 w-4 text-foreground`}
+                                        className={`h-4 w-4 text-secondary-foreground`}
                                         style={{ transform: `rotate(${item.wind_deg!}deg)` }}
                                         icon={ArrowUpBigIcon}
                                         strokeWidth={2}
                                     />
                                 )}
                             </span>
-                            <span className="text-base text-foreground">
+                            <span className="text-base text-secondary-foreground">
                                 {item.val} {item.unit}
                             </span>
                         </div>

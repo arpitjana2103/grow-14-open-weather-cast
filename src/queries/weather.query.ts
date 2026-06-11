@@ -1,7 +1,7 @@
 import type { TUnit } from "@/contexts/unit.context";
 import type { TAirPollutionResponse, TOneCallResponse } from "@/schemas/weather.schema";
 
-import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 
 import { getWeather, getAirPollution } from "@/services/weather.service";
 
@@ -15,7 +15,7 @@ export function useWeatherQuery(lat: number, lon: number, unit: TUnit) {
 }
 
 export function useAirPollutionQuery(lat: number, lon: number) {
-    return useQuery<TAirPollutionResponse>({
+    return useSuspenseQuery<TAirPollutionResponse>({
         queryKey: ["air-pollution", { lat, lon }],
         queryFn: () => getAirPollution({ lat, lon }),
         staleTime: 1000 * 60 * 60 * 10,

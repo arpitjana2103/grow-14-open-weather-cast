@@ -25,8 +25,8 @@ const CustomToolTip = function ({ active, payload, label }: any) {
         .split(/:| /);
 
     return (
-        <div className="rounded-sm bg-slate-900 p-3 shadow-sm dark:bg-slate-50">
-            <p className="mb-2 font-semibold text-slate-300 dark:text-slate-800">{`${hour12}:${minute} ${period}`}</p>
+        <div className="rounded-sm bg-opposite-background p-3 shadow-sm">
+            <p className="mb-2 font-semibold text-opposite-foreground">{`${hour12}:${minute} ${period}`}</p>
             {payload.map((entry: any) => (
                 <p key={entry.dataKey} style={{ color: entry.color }}>
                     {entry.name.replace(/_/g, " ").replace(/\b\w/g, (c: string) => c.toUpperCase())}
@@ -65,14 +65,16 @@ const CustomXTick = function ({ x, y, payload, hourlyDataMap }: any) {
                     <WeatherIcons
                         strokeWidth={1}
                         type={icon}
-                        className="mb-[0.3rem] h-8 w-8 text-primary-2"
+                        className="mb-[0.3rem] h-8 w-8 text-secondary-foreground"
                     />
                     <span>{timeTxt}</span>
                     <span>
                         {timeData.hour12}:{timeData.minute} {timeData.period}
                     </span>
                     <span className="mt-[0.3rem] flex">
-                        <span className="font-semibold text-primary-2">{Math.round(temp)}°</span>
+                        <span className="font-semibold text-secondary-foreground">
+                            {Math.round(temp)}°
+                        </span>
                         &nbsp;/&nbsp;
                         <span>{Math.round(feelsLike)}°</span>
                     </span>

@@ -33,7 +33,8 @@ function TooltipContent({
   sideOffset = 0,
   children,
   ...props
-}: React.ComponentProps<typeof TooltipPrimitive.Content>) {
+}: React.ComponentProps<typeof TooltipPrimitive.Content> & {className2?: string}) {
+
   return (
     <TooltipPrimitive.Portal>
       <TooltipPrimitive.Content
@@ -46,10 +47,23 @@ function TooltipContent({
         {...props}
       >
         {children}
-        <TooltipPrimitive.Arrow className="z-50 size-2.5 translate-y-[calc(-50%_-_2px)] rotate-45 rounded-[2px] bg-background fill-background" />
+        <TooltipPrimitive.Arrow className={cn("z-50 size-2.5 translate-y-[calc(-50%-2px)] rotate-45 rounded-xs bg-background fill-background", props.className2 || "" )} />
       </TooltipPrimitive.Content>
     </TooltipPrimitive.Portal>
   )
 }
 
-export { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger }
+function CustomToolTipContent({ children }: { children: React.ReactNode }) {
+    return (
+        <TooltipContent
+            className="z-1001 rounded-sm bg-opposite-background text-sm text-opposite-foreground shadow-2xl"
+            className2="bg-opposite-background fill-opposite-background"
+            side="bottom"
+        >
+            {children}
+        </TooltipContent>
+    );
+}
+
+
+export { Tooltip, TooltipContent, CustomToolTipContent, TooltipProvider, TooltipTrigger }
