@@ -1,6 +1,15 @@
 import CurrentWeatherCard from "@/components/forecastPage/current-weather-card/CurrentWeatherCard";
 import DailyWeatherCard from "@/components/forecastPage/daily-weather-card/DailyWeatehrCard";
 import Charts from "@/components/forecastPage/hourly-weather-card/Charts";
+import Clouds from "@/components/forecastPage/mini-cards/Clouds";
+import Humidity from "@/components/forecastPage/mini-cards/Humidity";
+import MoonRise from "@/components/forecastPage/mini-cards/MoonRise";
+import RainChance from "@/components/forecastPage/mini-cards/Precipitation";
+import Pressure from "@/components/forecastPage/mini-cards/Pressure";
+import SunRise from "@/components/forecastPage/mini-cards/SunRise";
+import UVIndex from "@/components/forecastPage/mini-cards/UVIndex";
+import Visibility from "@/components/forecastPage/mini-cards/Visibility";
+import Wind from "@/components/forecastPage/mini-cards/Wind";
 import Sidebar from "@/components/forecastPage/Sidebar";
 
 import CurrentLocation from "../components/forecastPage/CurrentLocation";
@@ -25,6 +34,20 @@ export default function ForecastPage() {
                     </div>
                 </Container>
                 <DailyWeatherCard className="w-full" />
+
+                <Container>
+                    <div className="mt-6 grid grid-cols-2 grid-rows-5 gap-4 sm:grid-cols-3 sm:grid-rows-none md:grid-cols-4 lg:grid-cols-5 lgxl:grid-cols-6">
+                        <SunRise className="aspect-square w-full rounded-md" />
+                        <MoonRise className="aspect-square w-full rounded-md" />
+                        <RainChance className="aspect-square w-full rounded-md bg-red-300" />
+                        <Wind className="aspect-square w-full rounded-md bg-red-300" />
+                        <UVIndex className="aspect-square w-full rounded-md bg-red-300" />
+                        <Visibility className="aspect-square w-full rounded-md bg-red-300" />
+                        <Pressure className="aspect-square w-full rounded-md bg-red-300" />
+                        <Clouds className="aspect-square w-full rounded-md bg-red-300" />
+                        <Humidity className="aspect-square w-full rounded-md bg-red-300" />
+                    </div>
+                </Container>
             </main>
         </>
     );

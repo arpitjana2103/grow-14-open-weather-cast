@@ -8,13 +8,13 @@ import { Button } from "@/components/ui/button";
 import { ChartContainer, ChartTooltip, type ChartConfig } from "@/components/ui/chart";
 import WeatherIcons from "@/components/WeatherIcons";
 import { useLocationContext } from "@/contexts/location.context";
-import { useUnitContext } from "@/contexts/unit.context";
+import { useUnitContext, WeatherUnits } from "@/contexts/unit.context";
 import { useWeatherQuery } from "@/queries/weather.query";
 import { getTimeDetails } from "@/utils/time-fn.util";
 
 import TempChartSkeleton from "./skeletons/TempChartSkeleton";
 
-const CustomToolTip = function ({ active, payload, label }: any) {
+const CustomToolTip = function ({ active, payload, label, tempUnit }: any) {
     if (!active || !payload?.length) return null;
     const time = new Date(label);
     const [hour12, minute, period] = time
@@ -31,14 +31,14 @@ const CustomToolTip = function ({ active, payload, label }: any) {
             {payload.map((entry: any) => (
                 <p key={entry.dataKey} style={{ color: entry.color }}>
                     {entry.name.replace(/_/g, " ").replace(/\b\w/g, (c: string) => c.toUpperCase())}
-                    &nbsp;:&nbsp;{Math.round(entry.value)}°
+                    &nbsp;:&nbsp;{Math.round(entry.value)} {tempUnit}
                 </p>
             ))}
         </div>
     );
 };
 
-const CustomXTick = function ({ x, y, payload, hourlyDataMap }: any) {
+const CustomXTick = function ({ x, y, payload, hourlyDataMap, tempUnit }: any) {
     const ISOKey = payload.value;
     const hourData = hourlyDataMap.get(ISOKey);
     const timeData = hourData.timeData;
@@ -74,10 +74,14 @@ const CustomXTick = function ({ x, y, payload, hourlyDataMap }: any) {
                     </span>
                     <span className="mt-[0.3rem] flex">
                         <span className="font-semibold text-secondary-foreground">
-                            {Math.round(temp)}°
+                            {Math.round(temp)}
+                            {tempUnit}
                         </span>
-                        &nbsp;/&nbsp;
-                        <span>{Math.round(feelsLike)}°</span>
+                        &nbsp;&nbsp;
+                        <span>
+                            {Math.round(feelsLike)}
+                            {tempUnit}
+                        </span>
                     </span>
                 </div>
             </foreignObject>
@@ -104,6 +108,7 @@ function TempChartComponent() {
 
     const { currentLatlng } = useLocationContext();
     const { unit: unitType } = useUnitContext();
+    const tempUnit = WeatherUnits[unitType].temp;
     const { isFetching, data } = useWeatherQuery(currentLatlng[0], currentLatlng[1], unitType);
     const timezone = data?.timezone;
     const hourlyData = data?.hourly;
@@ -124,12 +129,14 @@ function TempChartComponent() {
                             feels_like: hour.feels_like,
                             uvi: hour.uvi,
                             icon: hour.weather[0].icon,
+                            tempUnit: tempUnit,
                         },
                     ];
                 }),
             ),
-        [hourlyData, timezone],
+        [hourlyData, timezone, tempUnit],
     );
+
     const completeChartData = useMemo(
         () =>
             Array.from(hourlyDataMap.entries()).map(([time, hour]) => ({
@@ -154,7 +161,7 @@ function TempChartComponent() {
     } satisfies ChartConfig;
 
     const dataPoints = chartData.length;
-    const minWidthPerPoint = 60;
+    const minWidthPerPoint = 85;
 
     function handlePlusSlot() {
         setSlot((s) => Math.min(s + 1, MAX_SLOT));
@@ -213,11 +220,19 @@ function TempChartComponent() {
                                 axisLine={false}
                                 tickMargin={8}
                                 interval={0}
-                                tick={<CustomXTick hourlyDataMap={hourlyDataMap} />}
+                                tick={
+                                    <CustomXTick
+                                        hourlyDataMap={hourlyDataMap}
+                                        tempUnit={tempUnit}
+                                    />
+                                }
                                 height={44}
                             />
                             <YAxis tickLine={false} axisLine={false} tickMargin={8} tickCount={5} />
-                            <ChartTooltip cursor={true} content={<CustomToolTip />} />
+                            <ChartTooltip
+                                cursor={true}
+                                content={<CustomToolTip tempUnit={tempUnit} />}
+                            />
                             <Area
                                 dataKey="actual"
                                 type="natural"

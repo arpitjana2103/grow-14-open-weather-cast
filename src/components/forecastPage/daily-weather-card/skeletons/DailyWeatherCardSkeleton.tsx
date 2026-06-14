@@ -21,9 +21,11 @@ export default function DailyWeatherCardSkeleton({ className }: Props) {
                     />
                     <div className="lite-scrollbar relative w-auto overflow-y-scroll pr-20">
                         <div className="flex w-fit gap-4 rounded-sm bg-transparent">
-                            {new Array(8).fill(0).map(function () {
-                                return <DayCardSkeleton />;
-                            })}
+                            {Array.from({ length: 8 })
+                                .fill(0)
+                                .map(function (_, i) {
+                                    return <DayCardSkeleton key={i} />;
+                                })}
                         </div>
                     </div>
                 </div>

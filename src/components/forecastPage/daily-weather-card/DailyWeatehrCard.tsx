@@ -48,9 +48,9 @@ function DailyWeatherCardComponent({ className }: Props) {
                 <div className="relative w-full">
                     <div
                         className={cn(
-                            "absolute right-0 z-1000 h-full w-30 lgxl:block",
-                            "bg-[linear-gradient(90deg,transparent_0%,#FFF3E5_100%)]",
-                            "dark:bg-[linear-gradient(90deg,transparent_0%,#05122F_100%)]",
+                            "absolute right-0 z-1000 h-full w-10 sm:w-20 md:w-30 lgxl:block",
+                            "bg-[linear-gradient(90deg,transparent_0%,#FFF3E5_90%,#FFF3E5_100%)]",
+                            "dark:bg-[linear-gradient(90deg,transparent_0%,#05122F_90%,#05122F_100%)]",
                         )}
                     />
                     <div className="lite-scrollbar relative w-auto overflow-y-scroll pr-20">

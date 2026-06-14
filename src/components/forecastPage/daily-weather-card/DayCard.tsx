@@ -103,7 +103,7 @@ export default function DayCard({
                     <span>{`${wind_speed} ${windUnit}`}</span>
                     <HugeiconsIcon
                         className={`h-4 w-4 text-secondary-foreground`}
-                        style={{ transform: `rotate(${wind_deg!}deg)` }}
+                        style={{ transform: `rotate(${wind_deg}deg)` }}
                         icon={ArrowUpBigIcon}
                         strokeWidth={2}
                     />
