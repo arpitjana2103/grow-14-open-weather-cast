@@ -41,7 +41,7 @@ export default function ForecastPage() {
                         <MoonRise className="aspect-square w-full rounded-md" />
                         <Wind className="aspect-square w-full rounded-md" />
                         <Precipitation className="aspect-square w-full rounded-md" />
-                        <UVIndex className="aspect-square w-full rounded-md bg-red-300" />
+                        <UVIndex className="aspect-square w-full rounded-md" />
                         <Visibility className="aspect-square w-full rounded-md bg-red-300" />
                         <Pressure className="aspect-square w-full rounded-md bg-red-300" />
                         <Clouds className="aspect-square w-full rounded-md bg-red-300" />
