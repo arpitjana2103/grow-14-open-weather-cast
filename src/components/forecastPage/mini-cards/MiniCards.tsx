@@ -35,6 +35,7 @@ export default function MiniCards({}: Props) {
     const visibility = data.current.visibility;
     const humidity = data.current.humidity;
     const dewPoint = data.current.dew_point;
+    const clouds = data.current.clouds;
     return (
         <div className="mt-12 grid grid-cols-2 grid-rows-5 gap-4 sm:grid-cols-3 sm:grid-rows-none md:grid-cols-4 lg:grid-cols-5 lgxl:grid-cols-6">
             <SunRise
@@ -75,8 +76,8 @@ export default function MiniCards({}: Props) {
                 unit={unit}
                 className="aspect-square w-full overflow-auto rounded-md"
             />
+            <Clouds clouds={clouds} className="aspect-square w-full overflow-auto rounded-md" />
             <Pressure className="aspect-square w-full overflow-auto rounded-md bg-red-300" />
-            <Clouds className="aspect-square w-full overflow-auto rounded-md bg-red-300" />
         </div>
     );
 }
