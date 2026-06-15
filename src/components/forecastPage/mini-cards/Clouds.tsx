@@ -22,7 +22,7 @@ export default function Clouds({ className, clouds }: Props) {
             <div className="flex h-full w-full flex-col items-center justify-center">
                 <HugeiconsIcon
                     icon={clouds > 0 ? CloudIcon : CloudOffIcon}
-                    strokeWidth={1}
+                    strokeWidth={0.5}
                     className="size-[40%] translate-y-[10%] text-white dark:text-white/80"
                 />
                 <div className="text-2xl font-semibold text-white dark:text-white/80">

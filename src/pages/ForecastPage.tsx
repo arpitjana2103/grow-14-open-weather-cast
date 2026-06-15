@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import CurrentWeatherCard from "@/components/forecastPage/current-weather-card/CurrentWeatherCard";
 import DailyWeatherCard from "@/components/forecastPage/daily-weather-card/DailyWeatehrCard";
 import Charts from "@/components/forecastPage/hourly-weather-card/Charts";
@@ -10,7 +11,7 @@ import Container from "../components/layout/Container";
 export default function ForecastPage() {
     return (
         <>
-            <main className="mt-8 pb-96">
+            <main className="mt-8">
                 <Container>
                     <CurrentLocation />
                     <div className="mx-auto h-fit w-full max-w-full overflow-hidden lgxl:grid lgxl:w-full lgxl:grid-cols-4 lgxl:gap-6">
@@ -30,6 +31,7 @@ export default function ForecastPage() {
                 <Container>
                     <MiniCards />
                 </Container>
+                <Footer />
             </main>
         </>
     );
