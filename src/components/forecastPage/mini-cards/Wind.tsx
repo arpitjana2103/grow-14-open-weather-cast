@@ -44,7 +44,7 @@ export default function Wind({ unit, windSpeed, windDeg, className }: Props) {
                                 {windSpeed}
                             </span>
 
-                            <span className="text-xs text-secondary-foreground">{`${windUnit}`}</span>
+                            <span className="text-xs text-secondary-foreground">{windUnit}</span>
                         </span>
                     </div>
                 </div>

@@ -57,7 +57,7 @@ export function MiniCardsComponent() {
     return (
         <div className="mt-12">
             <p className="text-secondary-foreground">{`Weather details - ${hour12}:${minute} ${period.toLocaleLowerCase()} (${timezoneOffset})`}</p>
-            <div className="mt-4 grid grid-cols-2 grid-rows-5 gap-4 sm:grid-cols-3 sm:grid-rows-none md:grid-cols-4 lg:grid-cols-5 lgxl:grid-cols-6">
+            <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3 sm:grid-rows-none md:grid-cols-4 lg:grid-cols-5 lgxl:grid-cols-6">
                 <SunRise
                     sunRiseDt={sunRiseDt}
                     sunSetDt={sunSetDt}

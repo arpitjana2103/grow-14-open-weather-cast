@@ -3,12 +3,13 @@ import { HugeiconsIcon } from "@hugeicons/react";
 
 import { Button } from "@/components/ui/button";
 
-export default function GitHubBtn() {
+export default function GitHubBtn({ className }: { className?: string }) {
     return (
         <a
             href="https://github.com/arpitjana2103/grow-14-open-weather-cast"
             target="_blank"
             rel="noopener noreferrer"
+            className={className}
         >
             <Button className="h-10 cursor-pointer bg-transparent text-base hover:bg-accent/20">
                 <HugeiconsIcon

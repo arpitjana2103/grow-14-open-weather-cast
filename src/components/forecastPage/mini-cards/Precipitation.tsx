@@ -51,7 +51,7 @@ function Metrix({ precipChance }: { precipChance: number }) {
             {Array.from({ length: 4 }).map(function (_, i) {
                 return (
                     <div key={i} className="flex h-full flex-col justify-between">
-                        {Array.from({ length: 10 }).map(function (_, i) {
+                        {Array.from({ length: 10 }).map(function () {
                             return (
                                 <span className="aspect-square h-[10%]" key={i}>
                                     <HugeiconsIcon
