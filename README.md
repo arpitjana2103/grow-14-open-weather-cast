@@ -25,6 +25,7 @@
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4-06B6D4?style=flat&logo=tailwindcss)](https://tailwindcss.com/)
 [![React Router](https://img.shields.io/badge/React--Router-7-CA4245?style=flat&logo=reactrouter)](https://reactrouter.com/)
 [![Recharts](https://img.shields.io/badge/Recharts-2-22B5BF?style=flat&logo=chartdotjs)](https://recharts.org/)
+[![Schadcn](https://img.shields.io/badge/Schadcn-4-61DAFB?style=flat&logo=shadcnui)](https://ui.shadcn.com/)
 [![React Leaflet](https://img.shields.io/badge/React--Leaflet-5-3FB526?style=flat&logo=leaflet)](https://react-leaflet.js.org/)
 [![OpenWeatherMap](https://img.shields.io/badge/OpenWeatherMap-OneCall_3.0_API-EB6E4B?style=flat&logo=accuweather)](https://openweathermap.org/api)
 [![LocationIQ](https://img.shields.io/badge/LocationIQ-Geocoding_API-6B46C1?style=flat&logo=googlemaps)](https://locationiq.com/)
@@ -98,6 +99,7 @@ Local : http://localhost:5173/
 [![React Router](https://img.shields.io/badge/React--Router-7-CA4245?style=flat&logo=reactrouter)](https://reactrouter.com/)
 [![Recharts](https://img.shields.io/badge/Recharts-2-22B5BF?style=flat&logo=chartdotjs)](https://recharts.org/)
 [![React Leaflet](https://img.shields.io/badge/React--Leaflet-5-3FB526?style=flat&logo=leaflet)](https://react-leaflet.js.org/)
+[![Schadcn](https://img.shields.io/badge/Schadcn-4-61DAFB?style=flat&logo=shadcnui)](https://ui.shadcn.com/)
 [![OpenWeatherMap](https://img.shields.io/badge/OpenWeatherMap-OneCall_3.0_API-EB6E4B?style=flat&logo=accuweather)](https://openweathermap.org/api)
 [![LocationIQ](https://img.shields.io/badge/LocationIQ-Geocoding_API-6B46C1?style=flat&logo=googlemaps)](https://locationiq.com/)
 
